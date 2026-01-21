@@ -3,111 +3,126 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SCORM Launcher</title>
-
+<title>SCORM Window</title>
 <style>
-  body {
-    margin:0;
-    font-family:system-ui, Arial, sans-serif;
-    background:#111;
-    color:#fff;
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    background:#fff;
+  }
+
+  /* Launch button page */
+  .page {
+    min-height:100%;
     display:flex;
     align-items:center;
     justify-content:center;
-    height:100vh;
+    padding:24px;
   }
-
-  button {
+  .btn {
     padding:14px 22px;
     font-size:16px;
     border-radius:10px;
     border:0;
-    background:#ffffff;
-    color:#000;
+    background:#111;
+    color:#fff;
     cursor:pointer;
   }
 
-  /* Modal overlay */
+  /* Overlay */
   .modal {
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.85);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
+    /* IMPORTANT: reserve space so content never sits under close button */
+    padding: 72px 18px 18px 18px;
+    box-sizing: border-box;
   }
-  .modal.active {
-    display:flex;
+  .modal.active { display: block; }
+
+  /* Close button anchored to OVERLAY (not window) */
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center; /* centers the X perfectly */
+    font-size: 26px;
+    line-height: 1;
+    z-index: 10000;
   }
 
   /* Window */
   .window {
-    position:relative;
-    width:405px;
-    height:720px;
-    background:#000;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    width: min(920px, 100%);
+    height: min(92vh, 100%);
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 70px rgba(0,0,0,0.5);
   }
 
-  /* Close button */
-  .close {
-    position:absolute;
-    top:8px;
-    right:8px;
-    z-index:10;
-    background:rgba(0,0,0,0.6);
-    color:#fff;
-    border:0;
-    width:36px;
-    height:36px;
-    border-radius:10px;
-    font-size:20px;
-    cursor:pointer;
-  }
-
+  /* Iframe fills window */
   iframe {
-    width:100%;
-    height:100%;
-    border:0;
-    display:block;
-    background:#000;
-  }
-
-  /* Mobile fallback: allow scroll if screen is smaller */
-  @media (max-height:760px) {
-    .window {
-      max-height:95vh;
-      height:720px;
-    }
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background:#fff;
   }
 </style>
 </head>
-
 <body>
 
-<button id="open">Open SCORM</button>
+<div class="page">
+  <button class="btn" id="open">Open SCORM</button>
+</div>
 
-<div class="modal" id="modal">
-  <div class="window">
-    <button class="close" id="close">✕</button>
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-close" id="close" aria-label="Close">×</button>
 
-    <!-- POINT THIS TO YOUR SCORM ENTRY FILE -->
-    <iframe src="index_scorm.html"></iframe>
-
+  <div class="window" role="dialog" aria-modal="true" aria-label="SCORM">
+    <!-- Set this to your SCORM entry file -->
+    <iframe src="index_scorm.html" allowfullscreen></iframe>
   </div>
 </div>
 
 <script>
   const modal = document.getElementById('modal');
-  document.getElementById('open').onclick = () => modal.classList.add('active');
-  document.getElementById('close').onclick = () => modal.classList.remove('active');
+  const openBtn = document.getElementById('open');
+  const closeBtn = document.getElementById('close');
 
-  // Close when clicking outside the window
-  modal.addEventListener('click', e => {
-    if (e.target === modal) modal.classList.remove('active');
+  openBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+
+  // Click outside the window closes
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
   });
 </script>
 
