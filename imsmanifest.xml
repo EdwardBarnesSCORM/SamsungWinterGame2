@@ -33,11 +33,16 @@
 				<adlcp:location>metadata.xml</adlcp:location> 
 			</metadata>
 			
-			<file href="ar/Mouse.mp3"/>
+			<file href="ar/692284.mp3"/>
 		    <file href="index_scorm.html"/>
 			<file href="scormdriver.js"/>
 			<file href="browsersniff.js"/>
 			
+<file href="ar/692329.mp3"/> 
+<file href="ar/692374.mp3"/> 
+<file href="ar/692377.mp3"/> 
+<file href="ar/9165.mp3"/> 
+<file href="ar/Mouse.mp3"/> 
 <file href="assets/TOC_icons/collapseIcon.png"/> 
 <file href="assets/TOC_icons/expandIcon.png"/> 
 <file href="assets/TOC_icons/photo.png"/> 
@@ -240,6 +245,7 @@
 <file href="vr/Vi43.mp4"/> 
 <file href="vr/Vi44.mp4"/> 
 <file href="vr/Vi46.mp4"/> 
+<file href="vr/Vi47.mp4"/> 
 <file href="vr/Vi5.mp4"/> 
 <file href="vr/Vi6.mp4"/> 
 <file href="vr/Vi7.mp4"/> 
@@ -336,13 +342,6 @@
 <file href="wr/w_500768/libs/timer.js"/> 
 <file href="wr/w_500768/libs/tweenjs-0.3.0.min.js"/> 
 <file href="wr/w_500768/scripts/timer_use.js"/> 
-<file href="wr/w_531231/Widget_531231.htm"/> 
-<file href="wr/w_531231/libs/easeljs-0.5.0.min.js"/> 
-<file href="wr/w_531231/libs/easeljs-0.7.1.min.js"/> 
-<file href="wr/w_531231/libs/movieclip-0.5.0.min.js"/> 
-<file href="wr/w_531231/libs/timer.js"/> 
-<file href="wr/w_531231/libs/tweenjs-0.3.0.min.js"/> 
-<file href="wr/w_531231/scripts/timer_use.js"/> 
 <file href="wr/w_662895/Widget_662895.htm"/> 
 <file href="wr/w_662895/libs/easeljs-0.5.0.min.js"/> 
 <file href="wr/w_662895/libs/easeljs-0.7.1.min.js"/> 
