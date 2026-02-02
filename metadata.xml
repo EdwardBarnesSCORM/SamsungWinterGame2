@@ -8,13 +8,13 @@
     <general>
         
         <title>
-            <langstring>Captivate E-Learning Course</langstring>
+            <langstring>Captivate E-Learning-Kurs</langstring>
         </title>
         
         <catalogentry>
             <catalog>Catalog</catalog>
             <entry>
-                <langstring>Course_ID1</langstring>
+                <langstring>Kurs_ID1</langstring>
             </entry>
         </catalogentry>
         
@@ -122,7 +122,7 @@ END:VCARD
                 <displayStage>
           
                     <desired>
-                        <width>405</width>
+                        <width>1280</width>
                         <height>720</height>
                         <fullscreen>no</fullscreen>
                     </desired>
